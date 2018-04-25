@@ -6,7 +6,7 @@
 
 window.onload = setUserName();
 var host = location.origin.replace(/^http/, 'ws');
-host += "/testChatWS/chat";
+host += "/Chat/chat";
 
 var socket = new WebSocket(host);
 socket.onmessage = onMessage;
