@@ -62,3 +62,39 @@ body {
 	font-size: 20px;
 	background: #1ddced;
 }
+
+.chatForm input[type=text]{
+	background: #fbfbfb;
+	width: 75%;
+	height: 50px;
+	border: 2px solid #eee;
+	border-radius: 3px;
+	resize: none;
+	padding: 10px;
+	font-size: 18px;
+	color: #333;
+}
+
+.chatForm input[type=text]:focus {
+	background: #fff;
+}
+
+.chatForm input[type=button]{
+	background: #1ddced;
+	padding: 5px 15px;
+	font-size: 30px;
+	color: #fff;
+	border: none;
+	margin: 0 10px;
+	border-radius: 3px;
+	box-shadow: 0 3px 0 #0eb2c1;
+	cursor: pointer;
+
+	-webkit-transaction: background .2s ease;
+	-moz-transaction: backgroud .2s ease;
+	-o-transaction: backgroud .2s ease;
+}
+
+.chatForm input[type=button]:hover {
+	background: #13c8d9;
+}
