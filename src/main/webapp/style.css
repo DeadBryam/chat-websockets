@@ -62,19 +62,3 @@ body {
 	font-size: 20px;
 	background: #1ddced;
 }
-
-.chat-form #txtMessage {
-	background: #fbfbfb;
-	width: 75%;
-	height: 50px;
-	border: 2px solid #eee;
-	border-radius: 3px;
-	resize: none;
-	padding: 10px;
-	font-size: 18px;
-	color: #333;
-}
-
-.chat-form #txtMessage:focus {
-	background: #fff;
-}
