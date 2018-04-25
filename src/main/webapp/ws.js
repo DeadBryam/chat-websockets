@@ -27,7 +27,7 @@ function newMsg(user,message){
 }
 
 function print(msg){
-    var cont = document.getElementById("ChatArea");
+    var cont = document.getElementById("chatArea");
     
     var msgDiv = document.createElement("div");
     msgDiv.setAttribute("class","msgText");
@@ -35,7 +35,7 @@ function print(msg){
     
     var msgUser = document.createElement("span");
     msgUser.setAttribute("class","username");
-    msgUser.innerHTML = msg.user;
+    msgUser.innerHTML = msg.user+":   ";
     msgDiv.appendChild(msgUser);
     
     var msgMessage = document.createElement("span");

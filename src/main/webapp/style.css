@@ -19,7 +19,7 @@ body {
     background: wheat;
 }
 
-.Chat {
+.chat {
     width: 500px;
     min-width: 390px;
     height: 600px;
@@ -29,7 +29,7 @@ body {
     box-shadow: 0 3px #ccc;
 }
 
-.ChatArea {
+.chatArea {
     padding: 10px;
 	   width: 100%;
 	   height: 450px;
@@ -37,16 +37,27 @@ body {
 	   overflow-y: scroll;
 }
 
-.ChatArea::-webkit-scrollbar {
+.chatArea::-webkit-scrollbar {
 	width: 10px;
 }
 
-.ChatArea::-webkit-scrollbar-thumb {
+.chatArea::-webkit-scrollbar-thumb {
 	border-radius: 5px;
 	background: rgba(0,0,0,.1);
 }
 
+.chat {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
 
-.newMessageForm {
-
+.chat .msgText {
+	width: 80%;
+	padding: 15px;
+	margin: 5px 10px 0;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 20px;
 }
