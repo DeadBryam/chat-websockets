@@ -6,11 +6,12 @@
         <script src="ws.js"></script>
     </head>
     <body>
-        <form>
-            <input type="button" id="btnB" onclick="formSubmit()" value="saludo"/>
-            <input type="text" id="txtB"/>
+        <form id="newMessageForm">
+            <span>Mensaje: <input type="text" name="message" id="message"></span>
+            <input type="button" id="btnAdd" onclick="formSubmit()" value="saludo"/>
         </form>
-        <div id="divMsg" style="border: black">
+        
+        <div id="ChatArea">
         </div>
     </body>
 </html>

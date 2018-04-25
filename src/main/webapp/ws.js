@@ -4,36 +4,52 @@
  * and open the template in the editor.
  */
 
-var socket = new WebSocket("wss://echo.websocket.org");
+window.onload = setUserName();
+var host = location.origin.replace(/^http/, 'ws');
+host += "/testChatWS/chat";
+
+var socket = new WebSocket(host);
 socket.onmessage = onMessage;
 
+var userName;
+
 function onMessage(event){
-    
-    var msg = JSON.parse(event.data);
-    divMsg(msg.sal);
+    var chat = JSON.parse(event.data);
+    print(chat);
 }
 
-function msg(saludo){
-    
-    var mensaje = {
-        sal: saludo
+function newMsg(user,message){
+    var Messag = {
+        user: user,
+        message: message
     };
-    
-    socket.send(JSON.stringify(mensaje));
+    socket.send(JSON.stringify(Messag));
 }
 
-function divMsg(saludo){
-    var cont = document.getElementById("divMsg");
+function print(msg){
+    var cont = document.getElementById("ChatArea");
     
-    var div = document.createElement("label");
-    div.innerHTML = "<b>"+saludo+"</b><br>";
-    cont.appendChild(div);
+    var msgDiv = document.createElement("div");
+    msgDiv.setAttribute("class","msgText");
+    cont.appendChild(msgDiv);
+    
+    var msgUser = document.createElement("span");
+    msgUser.innerHTML = msg.user;
+    msgDiv.appendChild(msgUser);
+    
+    var msgMessage = document.createElement("span");
+    msgUser.innerHTML = msg.user;
+    msgDiv.appendChild(msgMessage);
 }
 
 function formSubmit(){
-    msg(document.getElementById("txtB").value);
+    var form = document.getElementById("newMessageForm");
+    var message = form.elements["message"].value;
+    newMsg(userName,message);
+    document.getElementById("newMessageForm").reset();
 }
 
-
-
+function setUserName(){
+    userName = prompt("Ingrese su nombre de usuario.");
+}
 
