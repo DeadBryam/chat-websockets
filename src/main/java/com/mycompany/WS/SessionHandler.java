@@ -5,9 +5,8 @@
  */
 package com.mycompany.WS;
 
-import com.mycompany.res.Messages;
+import com.mycompany.res.Chat;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,45 +25,39 @@ import javax.websocket.Session;
 @ApplicationScoped
 public class SessionHandler {
     
-    JsonObject lastMsg;
     private final Set<Session> session = new HashSet<>();
-    private final Set<Messages> msg = new HashSet<>();
+    private final Set<Chat> Chat = new HashSet<>();
     
     public void addSesion(Session se){
         session.add(se);
-        for (Messages messages : msg) {
+        for (Chat messages : Chat) {
             JsonObject addMsg = newMsg(messages);
             send(se, addMsg);
         }
-        
     }
     
     public void removeSession(Session se) {
         session.remove(se);
     }
     
-    public List<Messages> getMessages(){
-        return new ArrayList<>(msg);
+    public List<Chat> getMessages(){
+        return new ArrayList<>(Chat);
     }
     
-    public void addMsg(Messages msg){
-        this.msg.add(msg);
+    public void addMsg(Chat msg){
+        this.Chat.add(msg);
+        send2All(newMsg(msg));
     }
     
-    public JsonObject newMsg(Messages msg){
+    public JsonObject newMsg(Chat msg){
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMsg = provider.createObjectBuilder()
                 .add("user", msg.getUser())
                 .add("message", msg.getMessage())
                 .build();
-        lastMsg = addMsg;
         return addMsg;
     }
     
-    public void showMsgs(){
-        send2All(lastMsg);
-    }
-            
     private void send2All(JsonObject msg){
         for (Session s : session) {
             send(s, msg);

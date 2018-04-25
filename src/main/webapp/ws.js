@@ -34,17 +34,19 @@ function print(msg){
     cont.appendChild(msgDiv);
     
     var msgUser = document.createElement("span");
+    msgUser.setAttribute("class","username");
     msgUser.innerHTML = msg.user;
     msgDiv.appendChild(msgUser);
     
     var msgMessage = document.createElement("span");
-    msgUser.innerHTML = msg.user;
+    msgMessage.setAttribute("class","userMessage");
+    msgMessage.innerHTML = msg.message;
     msgDiv.appendChild(msgMessage);
 }
 
 function formSubmit(){
     var form = document.getElementById("newMessageForm");
-    var message = form.elements["message"].value;
+    var message = document.getElementById("txtMessage").value;
     newMsg(userName,message);
     document.getElementById("newMessageForm").reset();
 }

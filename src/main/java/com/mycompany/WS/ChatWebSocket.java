@@ -5,7 +5,7 @@
  */
 package com.mycompany.WS;
 
-import com.mycompany.res.Messages;
+import com.mycompany.res.Chat;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,11 +53,10 @@ public class ChatWebSocket {
         try (JsonReader reader = Json.createReader(new StringReader(msg))) {
             JsonObject jsonMessage = reader.readObject();
             
-            Messages chatMsg = new Messages();
+            Chat chatMsg = new Chat();
             chatMsg.setUser(jsonMessage.getString("user"));
             chatMsg.setMessage(jsonMessage.getString("message"));
             sh.addMsg(chatMsg);
-            sh.showMsgs();
             
         } catch (Exception e) {
         }

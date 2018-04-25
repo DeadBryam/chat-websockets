@@ -9,12 +9,12 @@ package com.mycompany.res;
  *
  * @author bryan
  */
-public class Messages {
+public class Chat {
     
     private String user;
     private String message;
 
-    public Messages() {
+    public Chat() {
     }
 
     public String getUser() {
