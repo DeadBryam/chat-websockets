@@ -4,14 +4,17 @@
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="ws.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <form id="newMessageForm">
-            <span>Mensaje: <input type="text" name="message" id="txtMessage"></span>
-            <input type="button" id="btnAdd" onclick="formSubmit()" value="saludo"/>
-        </form>
-        
-        <div id="ChatArea">
+        <div class="Chat">
+            <div class="ChatArea">
+            </div>
+            <form class="newMessageForm">
+                <span>Mensaje: <input type="text" name="message" id="txtMessage"></span>
+                <input type="button" id="btnAdd" onclick="formSubmit()" value="saludo"/>
+            </form>
         </div>
+
     </body>
 </html>
