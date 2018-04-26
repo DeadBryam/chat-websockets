@@ -6,7 +6,7 @@
 
 window.onload = setUserName();
 var host = location.origin.replace(/^http/, 'ws');
-host += "/Chat/chat";
+host += "/testChatWS/chat";
 
 var socket = new WebSocket(host);
 socket.onmessage = onMessage;
@@ -30,7 +30,11 @@ function print(msg){
     var cont = document.getElementById("chatArea");
     
     var msgDiv = document.createElement("div");
-    msgDiv.setAttribute("class","msgText");
+    if(msg.user === userName){
+        msgDiv.setAttribute("class","msgMe");
+    }else{
+        msgDiv.setAttribute("class","msgSelf");
+    }
     cont.appendChild(msgDiv);
     
     var msgUser = document.createElement("span");

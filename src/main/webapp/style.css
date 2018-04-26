@@ -24,17 +24,19 @@ body {
     min-width: 390px;
     height: 600px;
     background: #fff;
+	  border-radius: 10px;
     padding: 25px;
     margin: 20px auto;
     box-shadow: 0 3px #ccc;
 }
 
 .chatArea {
-    padding: 10px;
+     padding: 10px;
 	   width: 100%;
 	   height: 450px;
 	   overflow-x: hidden;
 	   overflow-y: scroll;
+	   background: white;
 }
 
 .chatArea::-webkit-scrollbar {
@@ -53,19 +55,37 @@ body {
 	margin-bottom: 10px;
 }
 
-.chat .msgText {
-	width: 95%;
+.chat .msgSelf {
+	float: left;
+	width: 90%;
 	padding: 15px;
-	margin: 5px 10px 0;
+	margin: 7px 10px 0;
 	border-radius: 10px;
 	color: #fff;
 	font-size: 20px;
-	background: #1ddced;
+	background: #2E9AFE;
+  box-shadow: 0 2px 2px #848484;
+}
+
+.chat .msgMe {
+	float: right;
+	width: 90%;
+	padding: 15px;
+	margin: 7px 10px 0;
+	border-radius: 10px;
+	color: black;
+	font-size: 20px;
+	background: #D8D8D8;
+	box-shadow: 0 2px 2px #848484;
+}
+
+.chatForm {
+	width: 100%;
 }
 
 .chatForm input[type=text]{
 	background: #fbfbfb;
-	width: 75%;
+	width: 66%;
 	height: 50px;
 	border: 2px solid #eee;
 	border-radius: 3px;
@@ -73,6 +93,7 @@ body {
 	padding: 10px;
 	font-size: 18px;
 	color: #333;
+	border-color: #D8D8D8;
 }
 
 .chatForm input[type=text]:focus {
