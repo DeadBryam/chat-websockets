@@ -85,15 +85,15 @@ body {
 
 .chatForm input[type=text]{
 	background: #fbfbfb;
-	width: 66%;
-	height: 50px;
-	border: 2px solid #eee;
-	border-radius: 3px;
+	width: 70%;
+	height: 55px;
+	border: 2px solid gray;
 	resize: none;
-	padding: 10px;
+	padding-top: 5px;
 	font-size: 18px;
 	color: #333;
 	border-color: #D8D8D8;
+	margin-top: 10px;
 }
 
 .chatForm input[type=text]:focus {
@@ -102,13 +102,13 @@ body {
 
 .chatForm input[type=button]{
 	background: #1ddced;
-	padding: 5px 15px;
 	font-size: 30px;
+	height: 55px;
+	width: 30%;
 	color: #fff;
 	border: none;
-	margin: 0 10px;
-	border-radius: 3px;
-	box-shadow: 0 3px 0 #0eb2c1;
+	padding-bottom: 3px;
+	margin: 4px -5px;
 	cursor: pointer;
 
 	-webkit-transaction: background .2s ease;

@@ -6,15 +6,13 @@
         <script src="ws.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
+    <body onkeypress="pulsar(event)">
         <div id="chat" class="chat">
             <div id="chatArea" class="chatArea">
             </div>
             <div id="chatForm" class="chatForm">
-            <form id="newMessageForm">
-                <span><input type="text" name="message" id="txtMessage"></span>
-                <input type="button" id="btnAdd" onclick="formSubmit()" value="Enviar"/>
-            </form>
+                <input type="text" name="message" id="txtMessage" >
+                <input type="button" id="btnAdd" onclick="formSubmit()" value="Enviar" />
             </div>
         </div>
 

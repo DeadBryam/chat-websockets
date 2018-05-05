@@ -13,12 +13,12 @@ socket.onmessage = onMessage;
 
 var userName;
 
-function onMessage(event){
+function onMessage(event) {
     var chat = JSON.parse(event.data);
     print(chat);
 }
 
-function newMsg(user,message){
+function newMsg(user, message) {
     var Messag = {
         user: user,
         message: message
@@ -26,36 +26,47 @@ function newMsg(user,message){
     socket.send(JSON.stringify(Messag));
 }
 
-function print(msg){
+function print(msg) {
     var cont = document.getElementById("chatArea");
-    
+
     var msgDiv = document.createElement("div");
-    if(msg.user === userName){
-        msgDiv.setAttribute("class","msgMe");
-    }else{
-        msgDiv.setAttribute("class","msgSelf");
+    if (msg.user === userName) {
+        msgDiv.setAttribute("class", "msgMe");
+    } else {
+        msgDiv.setAttribute("class", "msgSelf");
     }
     cont.appendChild(msgDiv);
-    
+
     var msgUser = document.createElement("span");
-    msgUser.setAttribute("class","username");
-    msgUser.innerHTML = msg.user+":   ";
+    msgUser.setAttribute("class", "username");
+    msgUser.innerHTML = msg.user + ":   ";
     msgDiv.appendChild(msgUser);
-    
+
     var msgMessage = document.createElement("span");
-    msgMessage.setAttribute("class","userMessage");
+    msgMessage.setAttribute("class", "userMessage");
     msgMessage.innerHTML = msg.message;
     msgDiv.appendChild(msgMessage);
 }
 
-function formSubmit(){
+function formSubmit() {
     var form = document.getElementById("newMessageForm");
     var message = document.getElementById("txtMessage").value;
-    newMsg(userName,message);
-    document.getElementById("newMessageForm").reset();
+    newMsg(userName, message);
+    document.getElementById("txtMessage").value = " ";
 }
 
-function setUserName(){
+function pulsar(e) {
+    if (window.event)
+        keyCode = window.event.keyCode;
+    else if (e)
+        keyCode = e.which;
+
+    if(keyCode === 13){
+        formSubmit();
+    }
+}
+
+function setUserName() {
     userName = prompt("Ingrese su nombre de usuario.");
 }
 

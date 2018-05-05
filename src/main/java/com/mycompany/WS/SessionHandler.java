@@ -25,8 +25,8 @@ import javax.websocket.Session;
 @ApplicationScoped
 public class SessionHandler {
     
-    private final Set<Session> session = new HashSet<>();
-    private final Set<Chat> Chat = new HashSet<>();
+    private final List<Session> session = new ArrayList<>();
+    private final List<Chat> Chat = new ArrayList<>();
     
     public void addSesion(Session se){
         session.add(se);
@@ -34,6 +34,7 @@ public class SessionHandler {
             JsonObject addMsg = newMsg(messages);
             send(se, addMsg);
         }
+        System.out.println(getMessages());
     }
     
     public void removeSession(Session se) {
@@ -44,6 +45,10 @@ public class SessionHandler {
         return new ArrayList<>(Chat);
     }
     
+    /**
+     *
+     * @param msg
+     */
     public void addMsg(Chat msg){
         this.Chat.add(msg);
         send2All(newMsg(msg));
