@@ -12,14 +12,30 @@ var socket = new WebSocket(host);
 socket.onmessage = onMessage;
 
 var userName;
+socket.onopen = () => sendUser(userName);
+
 
 function onMessage(event) {
     var chat = JSON.parse(event.data);
-    print(chat);
+    
+    if (chat.type === "users") {
+        printUser(chat);
+    } else {
+        print(chat);
+    }
+}
+
+function sendUser(us) {
+    var varchida = {
+        type: "users",
+        user: us
+    };
+    socket.send(JSON.stringify(varchida));
 }
 
 function newMsg(user, message) {
     var Messag = {
+        type: "msg",
         user: user,
         message: message
     };
@@ -48,6 +64,19 @@ function print(msg) {
     msgDiv.appendChild(msgMessage);
 }
 
+function printUser(msg) {
+    var cont = document.getElementById("conectados");
+
+    var divConectados = document.createElement("div");
+    divConectados.setAttribute("class", "connect");
+    cont.appendChild(divConectados);
+
+    var userConnect = document.createElement("span");
+    userConnect.setAttribute("class", "username");
+    userConnect.innerHTML = msg.user;
+    divConectados.appendChild(userConnect);
+}
+
 function formSubmit() {
     var form = document.getElementById("newMessageForm");
     var message = document.getElementById("txtMessage").value;
@@ -61,7 +90,7 @@ function pulsar(e) {
     else if (e)
         keyCode = e.which;
 
-    if(keyCode === 13){
+    if (keyCode === 13) {
         formSubmit();
     }
 }

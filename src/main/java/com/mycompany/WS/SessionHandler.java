@@ -8,9 +8,7 @@ package com.mycompany.WS;
 import com.mycompany.res.Chat;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
@@ -24,52 +22,76 @@ import javax.websocket.Session;
  */
 @ApplicationScoped
 public class SessionHandler {
-    
+
     private final List<Session> session = new ArrayList<>();
-    private final List<Chat> Chat = new ArrayList<>();
-    
-    public void addSesion(Session se){
+    private final List<Chat> chat = new ArrayList<>();
+    private final List<String> users = new ArrayList<>();
+
+    public void addSesion(Session se) {
         session.add(se);
-        for (Chat messages : Chat) {
+        for (Chat messages : chat) {
             JsonObject addMsg = newMsg(messages);
             send(se, addMsg);
         }
+
+        for (String us : users) {
+            JsonObject addUs = newUser(us);
+            send(se, addUs);
+        }
+
         System.out.println(getMessages());
     }
-    
+
     public void removeSession(Session se) {
         session.remove(se);
     }
-    
-    public List<Chat> getMessages(){
-        return new ArrayList<>(Chat);
+
+    public List<Chat> getMessages() {
+        return new ArrayList<>(chat);
     }
-    
+
     /**
      *
      * @param msg
      */
-    public void addMsg(Chat msg){
-        this.Chat.add(msg);
+    public void addMsg(Chat msg) {
+        this.chat.add(msg);
         send2All(newMsg(msg));
     }
-    
-    public JsonObject newMsg(Chat msg){
+
+    public void addUser(String us) {
+        if (!users.contains(us)) {
+            this.users.add(us);
+            send2All(newUser(us));
+        }
+    }
+
+    public JsonObject newMsg(Chat msg) {
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMsg = provider.createObjectBuilder()
+                .add("type", "msg")
                 .add("user", msg.getUser())
                 .add("message", msg.getMessage())
                 .build();
         return addMsg;
     }
-    
-    private void send2All(JsonObject msg){
+
+    public JsonObject newUser(String user) {
+        JsonProvider provider = JsonProvider.provider();
+        JsonObject addMsg = provider.createObjectBuilder()
+                .add("type", "users")
+                .add("user", user)
+                .build();
+        return addMsg;
+    }
+
+    private void send2All(JsonObject msg) {
         for (Session s : session) {
             send(s, msg);
         }
     }
-    
-    public void send(Session se,JsonObject msg){
+
+    public void send(Session se, JsonObject msg) {
         try {
             se.getBasicRemote().sendText(msg.toString());
         } catch (IOException e) {

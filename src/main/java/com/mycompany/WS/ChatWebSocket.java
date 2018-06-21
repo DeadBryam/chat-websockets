@@ -29,6 +29,7 @@ import javax.websocket.server.ServerEndpoint;
 @ApplicationScoped
 @ServerEndpoint("/chat")
 public class ChatWebSocket {
+    private Chat chatMsg;
     
     @Inject
     private SessionHandler sh;
@@ -53,12 +54,17 @@ public class ChatWebSocket {
         try (JsonReader reader = Json.createReader(new StringReader(msg))) {
             JsonObject jsonMessage = reader.readObject();
             
-            Chat chatMsg = new Chat();
+            if(jsonMessage.getString("type").equals("msg")){
+            chatMsg = new Chat();
             chatMsg.setUser(jsonMessage.getString("user"));
             chatMsg.setMessage(jsonMessage.getString("message"));
-            sh.addMsg(chatMsg);
+            sh.addMsg(chatMsg);   
+            }else{
+            sh.addUser(jsonMessage.getString("user"));
+            }
             
         } catch (Exception e) {
         }
     }
+    
 }
