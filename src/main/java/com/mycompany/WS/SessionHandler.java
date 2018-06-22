@@ -66,6 +66,18 @@ public class SessionHandler {
         }
     }
 
+    public void removeUser(String us) {
+        if (users.contains(us)) {
+            this.users.remove(us);
+            JsonProvider provider = JsonProvider.provider();
+        JsonObject removeUser = provider.createObjectBuilder()
+                .add("type", "remove")
+                .add("user", us)
+                .build();
+            send2All(removeUser);
+        }
+    }
+    
     public JsonObject newMsg(Chat msg) {
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMsg = provider.createObjectBuilder()
@@ -78,11 +90,11 @@ public class SessionHandler {
 
     public JsonObject newUser(String user) {
         JsonProvider provider = JsonProvider.provider();
-        JsonObject addMsg = provider.createObjectBuilder()
+        JsonObject addUser = provider.createObjectBuilder()
                 .add("type", "users")
                 .add("user", user)
                 .build();
-        return addMsg;
+        return addUser;
     }
 
     private void send2All(JsonObject msg) {

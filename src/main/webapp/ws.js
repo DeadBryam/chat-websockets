@@ -5,6 +5,12 @@
  */
 
 window.onload = setUserName();
+window.addEventListener("beforeunload", function (e) {
+    closeSession();
+    (e || window.event).returnValue = null;
+    return null;
+});
+
 var host = location.origin.replace(/^http/, 'ws');
 host += "/testChatWS/chat";
 
@@ -14,18 +20,22 @@ socket.onmessage = onMessage;
 var userName;
 socket.onopen = () => sendUser(userName);
 
-
 function onMessage(event) {
     var chat = JSON.parse(event.data);
+     console.log(chat.type);
     
     if (chat.type === "users") {
         printUser(chat);
-    } else {
+    } else if(chat.type === "msg"){
         print(chat);
+    } else if(chat.type === "remove"){
+        document.getElementById(chat.user).remove();
     }
+    bajarScroll();
 }
 
 function sendUser(us) {
+    sendMsg(userName,"¡Se ha conectado!");
     var varchida = {
         type: "users",
         user: us
@@ -33,7 +43,7 @@ function sendUser(us) {
     socket.send(JSON.stringify(varchida));
 }
 
-function newMsg(user, message) {
+function sendMsg(user, message) {
     var Messag = {
         type: "msg",
         user: user,
@@ -69,18 +79,18 @@ function printUser(msg) {
 
     var divConectados = document.createElement("div");
     divConectados.setAttribute("class", "connect");
+    divConectados.setAttribute("id",msg.user);
     cont.appendChild(divConectados);
 
-    var userConnect = document.createElement("span");
+    var userConnect = document.createElement("p");
     userConnect.setAttribute("class", "username");
     userConnect.innerHTML = msg.user;
     divConectados.appendChild(userConnect);
 }
 
 function formSubmit() {
-    var form = document.getElementById("newMessageForm");
     var message = document.getElementById("txtMessage").value;
-    newMsg(userName, message);
+    sendMsg(userName, message);
     document.getElementById("txtMessage").value = " ";
 }
 
@@ -95,7 +105,20 @@ function pulsar(e) {
     }
 }
 
+function bajarScroll() {
+    const sc = document.getElementById("chatArea");
+    sc.scrollTop = sc.scrollHeight;
+}
+
+function closeSession() {
+    var remove = {
+        type: "remove",
+        user: userName
+    };
+    sendMsg(userName,"¡Se ha desconectado!");
+    socket.send(JSON.stringify(remove));
+}
+
 function setUserName() {
     userName = prompt("Ingrese su nombre de usuario.");
 }
-

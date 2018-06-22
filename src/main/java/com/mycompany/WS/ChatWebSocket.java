@@ -54,13 +54,21 @@ public class ChatWebSocket {
         try (JsonReader reader = Json.createReader(new StringReader(msg))) {
             JsonObject jsonMessage = reader.readObject();
             
-            if(jsonMessage.getString("type").equals("msg")){
-            chatMsg = new Chat();
-            chatMsg.setUser(jsonMessage.getString("user"));
-            chatMsg.setMessage(jsonMessage.getString("message"));
-            sh.addMsg(chatMsg);   
-            }else{
-            sh.addUser(jsonMessage.getString("user"));
+            switch (jsonMessage.getString("type")) {
+                case "msg":
+                    chatMsg = new Chat();
+                    chatMsg.setUser(jsonMessage.getString("user"));
+                    chatMsg.setMessage(jsonMessage.getString("message"));
+                    sh.addMsg(chatMsg);
+                    break;
+                case "users":
+                    sh.addUser(jsonMessage.getString("user"));
+                    break;
+                case "remove":
+                    sh.removeUser(jsonMessage.getString("user"));
+                    break;
+                default:
+                    break;
             }
             
         } catch (Exception e) {
