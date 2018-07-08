@@ -8,7 +8,9 @@ package com.mycompany.WS;
 import com.mycompany.res.Chat;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
@@ -23,12 +25,12 @@ import javax.websocket.Session;
 @ApplicationScoped
 public class SessionHandler {
 
-    private final List<Session> session = new ArrayList<>();
+    private final HashMap<Session, String> session = new HashMap<>();
     private final List<Chat> chat = new ArrayList<>();
     private final List<String> users = new ArrayList<>();
 
     public void addSesion(Session se) {
-        session.add(se);
+        session.put(se, "random");
         for (Chat messages : chat) {
             JsonObject addMsg = newMsg(messages);
             send(se, addMsg);
@@ -98,9 +100,12 @@ public class SessionHandler {
     }
 
     private void send2All(JsonObject msg) {
-        for (Session s : session) {
+        for (Map.Entry<Session,String> entry : session.entrySet()) {
+            Session s = entry.getKey();
+            String user = entry.getValue();
             send(s, msg);
         }
+        
     }
 
     public void send(Session se, JsonObject msg) {

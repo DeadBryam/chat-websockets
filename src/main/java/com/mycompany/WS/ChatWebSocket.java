@@ -27,7 +27,7 @@ import javax.websocket.server.ServerEndpoint;
  */
 
 @ApplicationScoped
-@ServerEndpoint("/chat")
+@ServerEndpoint(value = "/chat/{user}")
 public class ChatWebSocket {
     private Chat chatMsg;
     

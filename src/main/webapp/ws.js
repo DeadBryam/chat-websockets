@@ -12,7 +12,7 @@ window.addEventListener("beforeunload", function (e) {
 });
 
 var host = location.origin.replace(/^http/, 'ws');
-host += "/testChatWS/chat";
+host += "/testChatWS/chat/"+userName;
 
 var socket = new WebSocket(host);
 socket.onmessage = onMessage;
