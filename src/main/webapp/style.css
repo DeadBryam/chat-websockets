@@ -53,6 +53,8 @@ body {
     flex-flow: row wrap;
     align-items: flex-start;
     margin-bottom: 10px;
+    -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);   
 }
 
 .chat .msgSelf {
@@ -64,7 +66,8 @@ body {
     color: #fff;
     font-size: 20px;
     background: #2E9AFE;
-    box-shadow: 0 2px 2px #848484;
+   -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 
 .chat .msgMe {
@@ -76,7 +79,8 @@ body {
     color: black;
     font-size: 20px;
     background: #D8D8D8;
-    box-shadow: 0 2px 2px #848484;
+    -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 
 .chatForm {
@@ -86,14 +90,14 @@ body {
 .chatForm input[type=text]{
     background: #fbfbfb;
     width: 70%;
-    height: 55px;
+    height: 60px;
     border: 2px solid gray;
     resize: none;
-    padding-top: 5px;
-    font-size: 18px;
+    font-size: 40px;
     color: #333;
     border-color: #D8D8D8;
-    margin-top: 10px;
+    margin-top:auto;
+    margin-bottom: auto;
 }
 
 .chatForm input[type=text]:focus {
@@ -103,17 +107,20 @@ body {
 .chatForm input[type=button]{
     background: #1ddced;
     font-size: 30px;
-    height: 55px;
+    height: 60px;
     width: 30%;
     color: #fff;
     border: none;
-    padding-bottom: 3px;
-    margin: 4px -5px;
     cursor: pointer;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-left: -5px;
+    padding-top: 6px;
 
     -webkit-transaction: background .2s ease;
     -moz-transaction: backgroud .2s ease;
     -o-transaction: backgroud .2s ease;
+    
 }
 
 .chatForm input[type=button]:hover {
@@ -121,7 +128,7 @@ body {
 }
 
 .conectados {
-    background: #F2F2F2;
+    background: #FAFAFA;
     float: right;
     width: 16%;
     margin-top: 0px;
@@ -137,7 +144,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    box-shadow: 0px 2px 2px #848484;
     font-size: 19px;
     background: white;
 
@@ -146,6 +152,9 @@ body {
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
 }
 
 .conectados .connect .username{
