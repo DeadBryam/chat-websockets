@@ -1,0 +1,26 @@
+    <!DOCTYPE html>
+<html>
+    <head>
+        <title>-Web Socket Test-</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="Pragma" CONTENT="no-cache">
+        <script src="resources/ws-chat.js"></script>
+        <link rel="stylesheet" type="text/css" href="resources/chat-page-style.css">
+    </head>
+    <body onkeypress="pulsar(event)">
+
+        <div id="chat" class="chat">
+            <div id="chatArea" class="chatArea">
+            </div>
+            <div id="conectados" class="conectados">
+            </div>
+            <div id="chatForm" class="chatForm">
+                <input type="text" name="message" id="txtMessage" >
+                <input type="button" id="btnAdd" onclick="formSubmit()" value="Enviar" />
+            </div>
+        </div>
+
+    </body >
+</html>

@@ -29,8 +29,9 @@ public class SessionHandler {
     private final List<Chat> chat = new ArrayList<>();
     private final List<String> users = new ArrayList<>();
 
-    public void addSesion(Session se) {
-        session.put(se, "random");
+    public void addSesion(Session se, String username) {
+        session.put(se, username);
+        
         for (Chat messages : chat) {
             JsonObject addMsg = newMsg(messages);
             send(se, addMsg);

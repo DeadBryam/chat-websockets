@@ -12,7 +12,7 @@ window.addEventListener("beforeunload", function (e) {
 });
 
 var host = location.origin.replace(/^http/, 'ws');
-host += "/testChatWS/chat/"+userName;
+host += "/testChatWS/chat/" + userName;
 
 var socket = new WebSocket(host);
 socket.onmessage = onMessage;
@@ -22,20 +22,20 @@ socket.onopen = () => sendUser(userName);
 
 function onMessage(event) {
     var chat = JSON.parse(event.data);
-     console.log(chat.type);
-    
+    console.log(chat.type);
+
     if (chat.type === "users") {
         printUser(chat);
-    } else if(chat.type === "msg"){
+    } else if (chat.type === "msg") {
         print(chat);
-    } else if(chat.type === "remove"){
+    } else if (chat.type === "remove") {
         document.getElementById(chat.user).remove();
     }
     bajarScroll();
 }
 
 function sendUser(us) {
-    sendMsg(userName,"¡Se ha conectado!");
+    sendMsg(userName, "¡Se ha conectado!");
     var varchida = {
         type: "users",
         user: us
@@ -79,7 +79,7 @@ function printUser(msg) {
 
     var divConectados = document.createElement("div");
     divConectados.setAttribute("class", "connect");
-    divConectados.setAttribute("id",msg.user);
+    divConectados.setAttribute("id", msg.user);
     cont.appendChild(divConectados);
 
     var userConnect = document.createElement("p");
@@ -115,10 +115,25 @@ function closeSession() {
         type: "remove",
         user: userName
     };
-    sendMsg(userName,"¡Se ha desconectado!");
+    sendMsg(userName, "¡Se ha desconectado!");
     socket.send(JSON.stringify(remove));
 }
 
 function setUserName() {
-    userName = prompt("Ingrese su nombre de usuario.");
+    userName = "";
+    var n = location + "";
+    n = n.replace(/.*html[?]/, "");
+
+    if (n.includes("user=")) {
+        n = n.replace("user=", "");
+        userName = n;
+    } else {
+        location.href = (location + "").replace(/[/]chat.*/, "");
+    }
+
+    if (userName === "" || userName === null) {
+        location.href = (location + "").replace(/[/]chat.*/, "");
+    }
+
+
 }

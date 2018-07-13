@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-10-2018, 09:29:06 AM
+    Author     : bryan
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: tahoma, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #018786;
+}
+
+.login{
+    width: 350px;
+    min-width: 300px;
+    height: 150px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    position: relative;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+
+    animation-name: entrada;
+    animation-duration: 1s;
+    -webkit-animation-name: entrada;
+    -webkit-animation-duration: 1s;
+
+    -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+
+}
+
+@-webkit-keyframes entrada {
+    0%   {left:-55%; top:0px;}
+    80%  {left: 20px; top:0px;}
+    90%  {left:-20px; top:0px;}
+    100%  {left:0px; top:0px;}
+}
+
+@keyframes entrada {
+    0%   {left:-55%; top:0px;}
+    80%  {left: 20px; top:0px;}
+    90%  {left:-20px; top:0px;}
+    100%  {left:0px; top:0px;}
+}
+
+#text {
+    font-size: 25px;  
+}
+.login input[type=text]{
+    background: #fbfbfb;
+    width: 83%;
+    height: 60px;
+    border: 2px solid gray;
+    resize: none;
+    font-size: 40px;
+    color: #333;
+    border-color: #D8D8D8;
+    border-radius: 9px;
+    margin-top: 13px;
+    padding-bottom: 6px;
+}
+
+.login input[type=text]:focus {
+    background: #fff;
+}
+
+.login input[type=button]{
+    background: #1ddced;
+    font-size: 30px;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: -1%;
+    border-radius: 100px;
+    margin-top: auto;
+    margin-left: auto;
+
+    -webkit-transaction: background .2s ease;
+    -moz-transaction: backgroud .2s ease;
+    -o-transaction: backgroud .2s ease;
+}
+
+.login input[type=button]:hover {
+    background: #13c8d9;
+}

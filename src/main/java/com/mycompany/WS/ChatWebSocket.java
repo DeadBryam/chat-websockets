@@ -19,6 +19,7 @@ import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 /**
@@ -35,8 +36,8 @@ public class ChatWebSocket {
     private SessionHandler sh;
     
     @OnOpen
-    public void open(Session se){
-        sh.addSesion(se);
+    public void open(Session se,@PathParam("user") String user){
+        sh.addSesion(se,user);
     }
     
     @OnClose
@@ -50,22 +51,25 @@ public class ChatWebSocket {
     }
     
     @OnMessage
-    public void msg(String msg,Session se){
+    public void msg(String msg,Session se,@PathParam("user") String user){
         try (JsonReader reader = Json.createReader(new StringReader(msg))) {
             JsonObject jsonMessage = reader.readObject();
             
             switch (jsonMessage.getString("type")) {
                 case "msg":
                     chatMsg = new Chat();
-                    chatMsg.setUser(jsonMessage.getString("user"));
+                    //chatMsg.setUser(jsonMessage.getString("user"));
+                    chatMsg.setUser(user);
                     chatMsg.setMessage(jsonMessage.getString("message"));
                     sh.addMsg(chatMsg);
                     break;
                 case "users":
-                    sh.addUser(jsonMessage.getString("user"));
+                    //sh.addUser(jsonMessage.getString("user"));
+                    sh.addUser(user);
                     break;
                 case "remove":
-                    sh.removeUser(jsonMessage.getString("user"));
+                    //sh.removeUser(jsonMessage.getString("user"));
+                    sh.removeUser(user);
                     break;
                 default:
                     break;

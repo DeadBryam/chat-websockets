@@ -1,23 +1,25 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <title>-Web Socket Test-</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="ws.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="Pragma" CONTENT="no-cache">
+        <script src="resources/login.js"></script>
+        <link rel="stylesheet" type="text/css" href="resources/login-style.css">
     </head>
-    <body onkeypress="pulsar(event)">
-
-        <div id="chat" class="chat">
-            <div id="chatArea" class="chatArea">
-            </div>
-            <div id="conectados" class="conectados">
-            </div>
-            <div id="chatForm" class="chatForm">
-                <input type="text" name="message" id="txtMessage" >
-                <input type="button" id="btnAdd" onclick="formSubmit()" value="Enviar" />
-            </div>
+    <body>
+        <div id="login" class="login">
+            <p id="text">Ingrese su usuario: </p>
+           <input type="text" name="message" id="txtUser" >
+           <input type="button" id="btnAdd" onclick="formSubmit()" value=">" /> 
         </div>
-
-    </body >
+    </body>
 </html>
